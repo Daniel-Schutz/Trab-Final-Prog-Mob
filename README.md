@@ -18,7 +18,7 @@ Visão Geral: To-Do List App é uma ferramenta para gerenciar tarefas diárias f
 - Lembrete e Notificação: os usuários podem adicionar lembretes e notificações para suas tarefas
 - Visualizar Tarefas: os usuários podem visualizar lista de tarefas pendentes e concluídas
 - Armazenamento: usuários básicos têm um limite de tarefas, enquanto usuários premium podem criar quantas quiserem.
-- Funcionalidades Extras: usuários premium têm acesso a funcionalidades extras, como análise de desempenho e integração com outros aplicativos
+
 
 ## Requisitos Não Funcionais:
 

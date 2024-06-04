@@ -1,5 +1,5 @@
 # Trab-Final-Prog-Mob
-## To-Do List App
+## Agenda de Contatos
 Grupo: Daniel Schutz, Pedro Henrique Carvalhaes
 
 Visão Geral: Agenda de Contatos com Recursos Avançados

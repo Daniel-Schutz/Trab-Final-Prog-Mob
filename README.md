@@ -16,7 +16,6 @@ Usuário: Pode cadastrar, editar e excluir contatos, adicionar endereços usando
 - Notificações: o aplicativo deve enviar notificações aos usuários comemorativos dos aniversários dos contatos cadastrados.
 - Menu: o aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
 - Configurações: o aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
-- Relatórios: o aplicativo deve gerar relatórios de contatos cadastrados e seus detalhes.
 - Edição e Exclusão: o aplicativo deve permitir que os usuários editem e excluam contatos cadastrados.
 - Pesquisa: o aplicativo deve permitir que os usuários pesquisem contatos cadastrados.
 

@@ -2,40 +2,44 @@
 ## To-Do List App
 Grupo: Daniel Schutz, Pedro Henrique Carvalhaes
 
-Visão Geral: To-Do List App é uma ferramenta para gerenciar tarefas diárias facilmente. Os usuários podem criar, editar e excluir tarefas, além de marcar como concluídas. O aplicativo também permite que os usuários adicionem lembretes e notificações para suas tarefas.
+Visão Geral: Agenda de Contatos com Recursos Avançados
 
 ## Papéis e Usuários:
 
-- Usuário Básico: pode criar, editar e excluir suas próprias tarefas, com limites de funcionalidades (como não poder definir lembretes)
-- Usuário Premium: pode criar, editar e excluir suas próprias tarefas sem limites de funcionalidades
+Usuário: Pode cadastrar, editar e excluir contatos, adicionar endereços usando o mapa, adicionar fotos usando a câmera, receber notificações para aniversários e personalizar o aplicativo com cores e sons.
+
 
 ## Requisitos Funcionais:
 
-- Cadastro e Login: os usuários podem se registrar e fazer login no aplicativo
-- Criar Tarefas: os usuários podem criar tarefas com título, descrição e data de vencimento
-- Editar e Excluir Tarefas: os usuários podem editar e excluir suas próprias tarefas
-- Marcar como Concluída: os usuários podem marcar tarefas como concluídas
-- Lembrete e Notificação: os usuários podem adicionar lembretes e notificações para suas tarefas
-- Visualizar Tarefas: os usuários podem visualizar lista de tarefas pendentes e concluídas
-- Armazenamento: usuários básicos têm um limite de tarefas, enquanto usuários premium podem criar quantas quiserem.
+- Cadastro de Contatos: o aplicativo deve permitir que os usuários cadastrem contatos com informações como nome, email, telefone, endereço e data de aniversário.
+- Armazenamento de Fotos: o aplicativo deve permitir que os usuários adicionem fotos aos contatos.
+- Notificações: o aplicativo deve enviar notificações aos usuários comemorativos dos aniversários dos contatos cadastrados.
+- Menu: o aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
+- Configurações: o aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
+- Relatórios: o aplicativo deve gerar relatórios de contatos cadastrados e seus detalhes.
+- Edição e Exclusão: o aplicativo deve permitir que os usuários editem e excluam contatos cadastrados.
+- Pesquisa: o aplicativo deve permitir que os usuários pesquisem contatos cadastrados.
 
 
 ## Requisitos Não Funcionais:
 
-- Usabilidade: interface fácil de usar e intuitiva
-- Acessibilidade: suporte para tamanhos de texto ajustáveis e contraste de cores
-- Segurança: login apenas com senha correta
+- Desempenho: o aplicativo deve ser rápido e responsivo, com tempos de carregamento razoáveis.
+-Segurança: o aplicativo deve garantir a segurança dos dados dos usuários, com senha para acesso ao app.
+-Usabilidade: o aplicativo deve ser fácil de usar, com uma interface intuitiva e minimalista.
 
 ## Tecnologias Utilizadas:
 
-- Fragmentos para criar e editar tarefas
-- Strings para internacionalizar o aplicativo
+- Fragmentos para criar e editar contatos
 - Cores e imagens para uma interface agradável
-- Notificações para lembrar as tarefas
+- Notificações para lembrar aniversário dos contatos
 - Menu para navegar entre as telas do aplicativo
 
 ## Testes de Caixa Preta:
 
 - Tentar login com credenciais erradas
-- Tentar criar tarefa com campos vazios
-- Tentar usuário básico acessar funcionalidade premium
+- Tentar criar contato com campos vazios
+ 
+
+
+ 
+

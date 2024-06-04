@@ -1,44 +1,102 @@
 # Trab-Final-Prog-Mob
-## Agenda de Contatos
-Grupo: Daniel Schutz, Pedro Henrique Carvalhaes
 
-Visão Geral: Agenda de Contatos com Recursos Avançados
+Agenda de Contatos com Recursos Avançados
+
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+
+
+## Grupo
+- [Daniel Jordão Schutz](https://github.com/Daniel-Schutz)
+
+- [Pedro Henrique Weber Carvalhaes](https://github.com/PedroWC)
 
 ## Papéis e Usuários:
 
-Usuário: Pode cadastrar, editar e excluir contatos, adicionar endereços usando o mapa, adicionar fotos usando a câmera, receber notificações para aniversários e personalizar o aplicativo com cores e sons.
+1. Usuário Cadastrado:
+
+- Pode criar uma conta e fazer login no aplicativo.
+- Pode adicionar, editar, excluir e visualizar contatos.
+- Pode definir lembretes de aniversários e eventos para seus contatos.
+- Pode visualizar a localização dos contatos em um mapa integrado.
+- Pode alterar suas informações de perfil, incluindo foto.
+
+2. Visitante (Não Cadastrado):
+
+- Não pode acessar a funcionalidade do aplicativo.
+- Pode apenas visualizar a tela de login e a opção de cadastro.
 
 
 ## Requisitos Funcionais:
 
-- Cadastro de Contatos: o aplicativo deve permitir que os usuários cadastrem contatos com informações como nome, email, telefone, endereço e data de aniversário.
-- Armazenamento de Fotos: o aplicativo deve permitir que os usuários adicionem fotos aos contatos.
-- Notificações: o aplicativo deve enviar notificações aos usuários comemorativos dos aniversários dos contatos cadastrados.
-- Menu: o aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
-- Configurações: o aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
-- Edição e Exclusão: o aplicativo deve permitir que os usuários editem e excluam contatos cadastrados.
-- Pesquisa: o aplicativo deve permitir que os usuários pesquisem contatos cadastrados.
+1. Tela de Login e Cadastro
+
+- O aplicativo deve possuir uma tela de login que permita que os usuários cadastrados acessem suas informações.
+- Deve haver uma opção de cadastro para que novos usuários possam criar uma conta.
+- O cadastro deve solicitar informações básicas do usuário, como nome, e-mail e senha.
+
+2. Gerenciamento de Contatos
+
+- O usuário cadastrado pode adicionar novos contatos, informando nome, número de telefone, e-mail, endereço, data de nascimento e foto do contato.
+- O usuário pode editar as informações de um contato existente.
+- O usuário pode excluir um contato.
+- O usuário pode visualizar a lista de todos os seus contatos cadastrados.
+
+4. Lembretes de Aniversários e Eventos
+
+- O usuário pode definir lembretes de aniversários e eventos para seus contatos.
+- O aplicativo deve exibir uma notificação no dispositivo do usuário quando um aniversário ou evento estiver próximo.
+
+5. Menu
+
+- O aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
+
+6. Configurações
+
+- O aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
+
+7. Localização de Contatos
+
+- O aplicativo deve integrar com um serviço de mapeamento para exibir a localização dos contatos no mapa.
+- O usuário pode visualizar a localização de seus contatos no mapa.
+
+8. Perfil do Usuário
+
+- O usuário pode alterar suas informações de perfil, incluindo a foto de perfil.
+- O aplicativo deve armazenar e exibir corretamente as informações de perfil do usuário.
 
 
 ## Requisitos Não Funcionais:
 
-- Desempenho: o aplicativo deve ser rápido e responsivo, com tempos de carregamento razoáveis.
--Segurança: o aplicativo deve garantir a segurança dos dados dos usuários, com senha para acesso ao app.
--Usabilidade: o aplicativo deve ser fácil de usar, com uma interface intuitiva e minimalista.
+1. Segurança:
 
-## Tecnologias Utilizadas:
+- O aplicativo deve garantir a segurança dos dados dos usuários, utilizando criptografia e autenticação.
+- Deve ser implementado um sistema de permissões de acesso, impedindo que usuários não cadastrados acessem informações privadas.
 
-- Fragmentos para criar e editar contatos
-- Cores e imagens para uma interface agradável
-- Notificações para lembrar aniversário dos contatos
-- Menu para navegar entre as telas do aplicativo
+2. Usabilidade:
+
+- A interface do aplicativo deve ser intuitiva, de fácil navegação e minimalista.
+
+3. Desempenho:
+
+- O aplicativo deve ter um tempo de resposta rápido, especialmente no carregamento de listas de contatos e no acesso a informações.
+- O aplicativo deve ser otimizado para consumo eficiente de recursos do dispositivo, como bateria e memória.
 
 ## Testes de Caixa Preta:
 
-- Tentar login com credenciais erradas
-- Tentar criar contato com campos vazios
- 
+1. Validação de Usuário Não Cadastrado:
 
+__Objetivo__: Verificar se um usuário não cadastrado não consegue acessar a funcionalidade do aplicativo.  
+__Entrada__: Tentativa de login com credenciais inválidas.  
+__Resultado esperado__: O aplicativo deve impedir o acesso do usuário não cadastrado e exibir uma mensagem de erro informando que o acesso é restrito a usuários cadastrados.  
 
- 
+2. Validação de Campos Obrigatórios:
 
+__Objetivo__: Verificar se o aplicativo valida a presença de campos obrigatórios.  
+__Entrada__: Tentativa de adicionar um novo contato com um campo obrigatório (como *número de telefone*) vazio.  
+__Resultado esperado__: O aplicativo deve exibir uma mensagem de erro informando que o campo obrigatório precisa ser preenchido.  
+
+4. Validação de Entrada Inválida:
+
+__Objetivo__: Verificar se o aplicativo valida a entrada de dados em campos numéricos.  
+__Entrada__: Tentar inserir um texto em um campo numérico (como o campo de *número de telefone*).  
+__Resultado esperado__: O aplicativo deve impedir a entrada de texto em um campo numérico e exibir uma mensagem de erro informando que o formato da entrada é inválido.

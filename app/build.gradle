@@ -1,0 +1,51 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace 'com.progmob.android.friendkeeper'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.progmob.android.friendkeeper"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // outras dependências
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler // Para usar anotações com Java
+    implementation libs.commons.codec
+
+    // Dependência opcional para usar coroutines com Room
+    implementation libs.room.ktx
+
+    // Dependência opcional para usar o RxJava com Room
+    implementation libs.room.rxjava2
+}

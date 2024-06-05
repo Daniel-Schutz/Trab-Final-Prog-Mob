@@ -1,4 +1,4 @@
-# Trab-Final-Prog-Mob
+# FriendKeeper
 
 Agenda de Contatos com Recursos Avançados
 
@@ -100,3 +100,34 @@ __Resultado esperado__: O aplicativo deve exibir uma mensagem de erro informando
 __Objetivo__: Verificar se o aplicativo valida a entrada de dados em campos numéricos.  
 __Entrada__: Tentar inserir um texto em um campo numérico (como o campo de *número de telefone*).  
 __Resultado esperado__: O aplicativo deve impedir a entrada de texto em um campo numérico e exibir uma mensagem de erro informando que o formato da entrada é inválido.
+
+## Entidades
+
+1. User
+- id: INTEGER (PK, AutoIncrement)
+- name: TEXT
+- email: TEXT (Unique)
+- passwordHash: TEXT (Armazena o hash da senha concatenado com o salt)
+- profilePictureUri: TEXT
+
+2. Contact
+- id: INTEGER (PK, AutoIncrement)
+- userId: INTEGER (FK, referencia User.id)
+- name: TEXT
+- phoneNumber: TEXT
+- email: TEXT
+- address: TEXT
+- birthdate: TEXT
+- photoUri: TEXT
+- location: TEXT
+
+3. Reminder
+- id: INTEGER (PK, AutoIncrement)
+- contactId: INTEGER (FK, referencia Contact.id)
+- type: TEXT (ex: 'Birthday' ou 'Event')
+- date: TEXT
+- notificationMessage: TEXT
+
+### Relacionamentos
+- User-Contact: Um usuário pode ter vários contatos.
+- Contact-Reminder: Um contato pode ter vários lembretes.

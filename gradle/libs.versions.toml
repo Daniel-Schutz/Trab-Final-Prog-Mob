@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.0"
+circleimageview = "2.2.0"
 commonsCodec = "1.15"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -11,6 +12,7 @@ constraintlayout = "2.1.4"
 roomRuntime = "2.6.1"
 
 [libraries]
+circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 commons-codec = { module = "commons-codec:commons-codec", version.ref = "commonsCodec" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

@@ -42,6 +42,7 @@ dependencies {
     implementation libs.room.runtime
     annotationProcessor libs.room.compiler // Para usar anotações com Java
     implementation libs.commons.codec
+    implementation libs.circleimageview
 
     // Dependência opcional para usar coroutines com Room
     implementation libs.room.ktx

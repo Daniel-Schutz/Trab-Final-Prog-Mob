@@ -9,6 +9,6 @@ public class User {
     public int id;
     public String name;
     public String email;
-    public String passwordHash;  // hashed password
-    public String profilePictureUri; // URI to the profile picture
+    public String passwordHash;  // senha com hash
+    public String profilePictureUri; // URI para a foto do perfil
 }

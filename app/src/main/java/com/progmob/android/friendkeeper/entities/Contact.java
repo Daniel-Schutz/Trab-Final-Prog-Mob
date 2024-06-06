@@ -11,12 +11,12 @@ import androidx.room.ForeignKey;
 public class Contact {
     @PrimaryKey(autoGenerate = true)
     public int id;
-    public int userId;  // Foreign key to User
+    public int userId;  // Chave estrangeira para usuário
     public String name;
     public String phoneNumber;
     public String email;
     public String address;
     public String birthdate;
-    public String photoUri; // URI to the contact's photo
-    public String location; // Location information (could be latitude,longitude or a place name)
+    public String photoUri; // URI para a foto do contato
+    public String location; // Informações de localização (pode ser latitude, longitude ou nome de um lugar)
 }

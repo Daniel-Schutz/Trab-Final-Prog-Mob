@@ -1,4 +1,5 @@
 <resources>
     <!-- Geral -->
     <string name="app_name">FriendKeeper</string>
+    <string name="logo_description">Logo do aplicativo</string>
 </resources>

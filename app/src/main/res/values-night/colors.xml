@@ -2,15 +2,14 @@
     <!-- Cores Primárias -->
     <color name="color_logo">#C0732F</color>
     <color name="dark_cyan_green">#388E3C</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
     <color name="red">#F44336</color>
 
     <!-- Cores de Fundo -->
-    <color name="background">#f7ceaa</color>
-
+    <color name="background">#846d5a</color>
     <!-- Cores de Texto -->
-    <color name="text_color_primary">#212121</color>
+    <color name="text_color_primary">#FFF</color>
     <color name="text_color_secondary">#000</color>
-    <color name="hint">#757575</color>
+    <color name="hint">#B0BEC5</color>
 </resources>

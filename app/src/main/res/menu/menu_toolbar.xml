@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_night_mode"
+        android:title="@string/night_mode"
+        android:actionLayout="@layout/menu_item_switch"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_language"
+        android:title="@string/idioma"
+        android:icon="@drawable/ic_language"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/action_language_english"
+                android:title="@string/english"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_language_portuguese"
+                android:title="@string/portuguese"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_language_spanish"
+                android:title="@string/spanish"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_language_french"
+                android:title="@string/french"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/logout"
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">FriendKeeper</string>
+    <!-- Geral -->
     <string name="logo_description">Logo do aplicativo</string>
     <string name="dados_nao_prontos">Os dados não estão prontos ou não existem.</string>
     <string name="login_invalido">Email ou senha inválido</string>
@@ -13,8 +12,6 @@
     <string name="idioma">Idioma</string>
     <string name="english">Inglês</string>
     <string name="portuguese">Português</string>
-    <string name="spanish">Espanhol</string>
-    <string name="french">Francês</string>
 
     <!-- Tela de Login -->
     <string name="hint_email_login">Email</string>
@@ -28,5 +25,7 @@
     <string name="hint_senha_cadastrar">Senha</string>
     <string name="txt_button_registrar">Registrar</string>
     <string name="txt_tela_login">Já tem uma conta? Faça login aqui</string>
+    <string name="spanish">Espanhol</string>
+    <string name="french">Francês</string>
     <string name="logout">Sair</string>
 </resources>

@@ -1,30 +1,41 @@
 [versions]
-agp = "8.4.0"
-circleimageview = "2.2.0"
+activityKtxVersion = "1.9.0"
+agp = "8.2.2"
+androidxJunit = "1.1.5"
+appcompatVersion = "1.7.0"
+circleimageview = "3.1.0"
 commonsCodec = "1.15"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-appcompat = "1.6.1"
-material = "1.12.0"
-activity = "1.9.0"
 constraintlayout = "2.1.4"
-roomRuntime = "2.6.1"
+daggerCompiler = "2.38.1"
+espressoCoreVersion = "3.5.1"
+glide = "4.12.0"
+gradle = "8.0.2"
+junitVersion = "4.13.2"
+materialVersion = "1.12.0"
+roomCompiler = "2.6.1"
+roomKtx = "2.6.1"
+roomRuntimeVersion = "2.6.1"
+roomRxjava2 = "2.6.1"
+
 
 [libraries]
+androidx-activity-ktx-v160 = { module = "androidx.activity:activity-ktx", version.ref = "activityKtxVersion" }
+androidx-appcompat-v161 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-espresso-core-v340 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
+androidx-junit-v113 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+androidx-room-compiler-v242 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-ktx-v242 = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-runtime-v242 = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
+androidx-room-rxjava2-v242 = { module = "androidx.room:room-rxjava2", version.ref = "roomRxjava2" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 commons-codec = { module = "commons-codec:commons-codec", version.ref = "commonsCodec" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "roomRuntime" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+junit = { module = "junit:junit", version.ref = "junitVersion" }
+material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

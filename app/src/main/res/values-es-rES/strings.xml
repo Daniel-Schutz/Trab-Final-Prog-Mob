@@ -1,0 +1,30 @@
+<resources>
+    <!-- General -->
+    <string name="logo_description">Logo de la aplicación</string>
+    <string name="dados_nao_prontos">Los datos no están listos o no existen.</string>
+    <string name="login_invalido">Correo electrónico o contraseña inválidos</string>
+    <string name="usuario_registrado">Usuario registrado con éxito</string>
+    <string name="erro_registro_usuario">Error al registrar el usuario</string>
+    <string name="preencher_campos">Por favor, rellene todos los campos</string>
+    <string name="nome_contato">Nombre del contacto</string>
+    <string name="tel_contato">Número de teléfono del contacto</string>
+    <string name="night_mode">Modo Nocturno</string>
+    <string name="idioma">Idioma</string>
+    <string name="english">Inglés</string>
+    <string name="portuguese">Portugués</string>
+
+    <!-- Pantalla de inicio de sesión -->
+    <string name="hint_email_login">Correo electrónico</string>
+    <string name="hint_senha_login">Contraseña</string>
+    <string name="txt_button_entrar">Iniciar sesión</string>
+    <string name="txt_tela_cadastro">¿No tienes una cuenta? Regístrate aquí</string>
+
+    <!-- Pantalla de registro -->
+    <string name="hint_nome_cadastrar">Nombre</string>
+    <string name="hint_email_cadastrar">Correo electrónico</string>
+    <string name="hint_senha_cadastrar">Contraseña</string>
+    <string name="txt_button_registrar">Registrar</string>
+    <string name="txt_tela_login">¿Ya tienes una cuenta? Inicia sesión aquí</string>
+    <string name="spanish">Español</string>
+    <string name="french">Francés</string>
+</resources>

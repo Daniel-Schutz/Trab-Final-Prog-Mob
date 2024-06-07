@@ -21,9 +21,9 @@ public interface ReminderDao {
     @Delete
     void delete(Reminder reminder);
 
-    @Query("SELECT * FROM Reminder WHERE contactId = :contactId")
+    @Query("SELECT * FROM reminders WHERE contactId = :contactId")
     List<Reminder> getRemindersByContactId(int contactId);
 
-    @Query("SELECT * FROM Reminder WHERE id = :id")
+    @Query("SELECT * FROM reminders WHERE id = :id")
     Reminder getReminderById(int id);
 }

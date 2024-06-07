@@ -1,8 +1,0 @@
-<resources>
-    <!-- Tela de Registro -->
-    <string name="hint_nome_cadastrar">Nome</string>
-    <string name="hint_email_cadastrar">Email</string>
-    <string name="hint_senha_cadastrar">Senha</string>
-    <string name="txt_button_registrar">Registrar</string>
-    <string name="txt_tela_login">Já tem uma conta? Faça login aqui</string>
-</resources>

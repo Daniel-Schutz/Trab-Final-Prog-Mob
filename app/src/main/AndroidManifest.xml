@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.progmob.android.friendkeeper">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-
-    <!-- Custom Permission -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> <!-- Custom Permission -->
     <permission
         android:name="com.progmob.android.friendkeeper.PERMISSION_RECEIVE_NOTIFICATIONS"
         android:protectionLevel="normal" />
@@ -21,17 +18,18 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendKeeper">
-
-        <!-- Main Activity -->
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activities.LoggedActivity"
+            android:exported="false" />
+        <!-- OutLogged Activity -->
+        <activity
+            android:name=".ui.activities.OutLoggedActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- Notification Receiver -->
         <receiver
             android:name=".utils.NotificationReceiver"
@@ -41,7 +39,5 @@
                 <action android:name="com.progmob.android.friendkeeper.NOTIFICATION_EVENT" />
             </intent-filter>
         </receiver>
-
     </application>
-
 </manifest>

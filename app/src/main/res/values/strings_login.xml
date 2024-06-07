@@ -1,7 +1,0 @@
-<resources>
-    <!-- Tela de Login -->
-    <string name="hint_email_login">Email</string>
-    <string name="hint_senha_login">Senha</string>
-    <string name="txt_button_entrar">Entrar</string>
-    <string name="txt_tela_cadastro">Não tem uma conta? Registre-se aqui</string>
-</resources>

@@ -1,5 +1,6 @@
 package com.progmob.android.friendkeeper.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,9 +22,12 @@ public interface ContactDao {
     @Delete
     void delete(Contact contact);
 
-    @Query("SELECT * FROM Contact WHERE userId = :userId")
+    @Query("SELECT * FROM contacts WHERE id = :id")
+    Contact getContactById(int id);
+
+    @Query("SELECT * FROM contacts WHERE userId = :userId")
     List<Contact> getContactsByUserId(int userId);
 
-    @Query("SELECT * FROM Contact WHERE id = :id")
-    Contact getContactById(int id);
+    @Query("SELECT * FROM contacts")
+    LiveData<List<Contact>> getAllContacts();
 }

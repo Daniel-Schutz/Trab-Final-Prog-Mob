@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id 'com.android.application'
+    id 'kotlin-android'
 }
 
 android {
@@ -12,6 +13,12 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,27 +33,28 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.activity
-    implementation libs.constraintlayout
-    testImplementation libs.junit
-    androidTestImplementation libs.ext.junit
-    androidTestImplementation libs.espresso.core
-
-    // outras dependências
-    implementation libs.room.runtime
-    annotationProcessor libs.room.compiler // Para usar anotações com Java
+    implementation libs.androidx.appcompat.v161
+    implementation libs.material.v190
+    implementation libs.androidx.activity.ktx.v160
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.room.runtime.v242
     implementation libs.commons.codec
     implementation libs.circleimageview
+    implementation libs.glide
 
-    // Dependência opcional para usar coroutines com Room
-    implementation libs.room.ktx
+    implementation libs.androidx.room.ktx.v242
+    implementation libs.androidx.room.rxjava2.v242
 
-    // Dependência opcional para usar o RxJava com Room
-    implementation libs.room.rxjava2
+    androidTestImplementation libs.androidx.junit.v113
+    androidTestImplementation libs.androidx.espresso.core.v340
+    testImplementation libs.junit
+
+    annotationProcessor libs.androidx.room.compiler.v242
+    annotationProcessor libs.dagger.compiler
 }

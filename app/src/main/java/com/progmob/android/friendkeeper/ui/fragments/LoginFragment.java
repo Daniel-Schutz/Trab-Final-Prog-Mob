@@ -54,7 +54,7 @@ public class LoginFragment extends Fragment {
             String password = passwordEditText.getText().toString();
 
             if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.preencher_campos, Toast.LENGTH_SHORT).show();
             } else {
                 mListener.onLogin(email, password);
             }

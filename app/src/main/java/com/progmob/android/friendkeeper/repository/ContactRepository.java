@@ -1,52 +1,74 @@
 package com.progmob.android.friendkeeper.repository;
 
+import android.app.Application;
+
+import androidx.lifecycle.LiveData;
+
 import com.progmob.android.friendkeeper.dao.ContactDao;
+import com.progmob.android.friendkeeper.database.AppDatabase;
 import com.progmob.android.friendkeeper.entities.Contact;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ContactRepository {
     private final ContactDao contactDao;
+    private final LiveData<List<Contact>> allContacts;
+    private final ExecutorService executorService;
 
-    public ContactRepository(ContactDao contactDao) {
-        this.contactDao = contactDao;
+    public ContactRepository(Application application) {
+        AppDatabase db = AppDatabase.getDatabase(application);
+        contactDao = db.contactDao();
+        allContacts = contactDao.getAllContacts();
+        executorService = Executors.newSingleThreadExecutor();
     }
 
-    public void addContact(int userId, String name, String phoneNumber, String email, String address, String birthdate, String photoUri, String location) {
-        Contact contact = new Contact();
-        contact.userId = userId;
-        contact.name = name;
-        contact.phoneNumber = phoneNumber;
-        contact.email = email;
-        contact.address = address;
-        contact.birthdate = birthdate;
-        contact.photoUri = photoUri;
-        contact.location = location;
-        contactDao.insert(contact);
+    public void insert(Contact cont) {
+        executorService.execute(() -> {
+            Contact contact = new Contact();
+            contact.userId = cont.userId;
+            contact.name = cont.name;
+            contact.phoneNumber = cont.phoneNumber;
+            contact.email = cont.email;
+            contact.address = cont.address;
+            contact.birthdate = cont.birthdate;
+            contact.photoUri = cont.photoUri;
+            contact.location = cont.location;
+            contactDao.insert(contact);
+        });
     }
 
-    public void editContact(int contactId, String name, String phoneNumber, String email, String address, String birthdate, String photoUri, String location) {
-        Contact contact = contactDao.getContactById(contactId);
-        if (contact != null) {
-            contact.name = name;
-            contact.phoneNumber = phoneNumber;
-            contact.email = email;
-            contact.address = address;
-            contact.birthdate = birthdate;
-            contact.photoUri = photoUri;
-            contact.location = location;
-            contactDao.update(contact);
-        }
+    public void update(Contact cont) {
+        executorService.execute(() -> {
+            Contact contact = contactDao.getContactById(cont.id);
+            if (contact != null) {
+                contact.name = cont.name;
+                contact.phoneNumber = cont.phoneNumber;
+                contact.email = cont.email;
+                contact.address = cont.address;
+                contact.birthdate = cont.birthdate;
+                contact.photoUri = cont.photoUri;
+                contact.location = cont.location;
+                contactDao.update(contact);
+            }
+        });
     }
 
-    public void deleteContact(int contactId) {
-        Contact contact = contactDao.getContactById(contactId);
-        if (contact != null) {
-            contactDao.delete(contact);
-        }
+    public void delete(Contact cont) {
+        executorService.execute(() -> {
+            Contact contact = contactDao.getContactById(cont.id);
+            if (contact != null) {
+                contactDao.delete(contact);
+            }
+        });
     }
 
     public List<Contact> listContacts(int userId) {
         return contactDao.getContactsByUserId(userId);
+    }
+
+    public LiveData<List<Contact>> getAllContacts() {
+        return allContacts;
     }
 }

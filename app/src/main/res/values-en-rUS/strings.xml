@@ -1,0 +1,30 @@
+<resources>
+    <!-- General -->
+    <string name="logo_description">App logo</string>
+    <string name="dados_nao_prontos">Data is not ready or does not exist.</string>
+    <string name="login_invalido">Invalid email or password</string>
+    <string name="usuario_registrado">User registered successfully</string>
+    <string name="erro_registro_usuario">Error registering user</string>
+    <string name="preencher_campos">Please fill in all fields</string>
+    <string name="nome_contato">Contact name</string>
+    <string name="tel_contato">Contact phone number</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="idioma">Language</string>
+    <string name="english">English</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="spanish">Spanish</string>
+    <string name="french">French</string>
+
+    <!-- Login Screen -->
+    <string name="hint_email_login">Email</string>
+    <string name="hint_senha_login">Password</string>
+    <string name="txt_button_entrar">Login</string>
+    <string name="txt_tela_cadastro">Don\'t have an account? Register here</string>
+
+    <!-- Registration Screen -->
+    <string name="hint_nome_cadastrar">Name</string>
+    <string name="hint_email_cadastrar">Email</string>
+    <string name="hint_senha_cadastrar">Password</string>
+    <string name="txt_button_registrar">Register</string>
+    <string name="txt_tela_login">Already have an account? Login here</string>
+</resources>

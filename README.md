@@ -14,52 +14,52 @@ Agenda de Contatos com Recursos Avançados
 
 1. Usuário Cadastrado:
 
-- Pode criar uma conta e fazer login no aplicativo.
-- Pode adicionar, editar, excluir e visualizar contatos.
-- Pode definir lembretes de aniversários e eventos para seus contatos.
-- Pode visualizar a localização dos contatos em um mapa integrado.
-- Pode alterar suas informações de perfil, incluindo foto.
+   - Pode criar uma conta e fazer login no aplicativo.
+   - Pode adicionar, editar, excluir e visualizar contatos.
+   - Pode definir lembretes de aniversários e eventos para seus contatos.
+   - Pode visualizar a localização dos contatos em um mapa integrado.
+   - Pode alterar suas informações de perfil, incluindo foto.
 
 2. Visitante (Não Cadastrado):
 
-- Não pode acessar a funcionalidade do aplicativo.
-- Pode apenas visualizar a tela de login e a opção de cadastro.
+   - Não pode acessar a funcionalidade do aplicativo.
+   - Pode apenas visualizar a tela de login e a opção de cadastro.
 
 
 ## Requisitos Funcionais:
 
 1. Tela de Login e Cadastro
 
-- O aplicativo deve possuir uma tela de login que permita que os usuários cadastrados acessem suas informações.
-- Deve haver uma opção de cadastro para que novos usuários possam criar uma conta.
-- O cadastro deve solicitar informações básicas do usuário, como nome, e-mail e senha.
+   - O aplicativo deve possuir uma tela de login que permita que os usuários cadastrados acessem suas informações.
+   - Deve haver uma opção de cadastro para que novos usuários possam criar uma conta.
+   - O cadastro deve solicitar informações básicas do usuário, como nome, e-mail e senha.
 
 2. Gerenciamento de Contatos
 
-- O usuário cadastrado pode adicionar novos contatos, informando nome, número de telefone, e-mail, endereço, data de nascimento e foto do contato.
-- O usuário pode editar as informações de um contato existente.
-- O usuário pode excluir um contato.
-- O usuário pode visualizar a lista de todos os seus contatos cadastrados.
+   - O usuário cadastrado pode adicionar novos contatos, informando nome, número de telefone, e-mail, endereço, data de nascimento e foto do contato.
+   - O usuário pode editar as informações de um contato existente.
+   - O usuário pode excluir um contato.
+   - O usuário pode visualizar a lista de todos os seus contatos cadastrados.
 
-4. Lembretes de Aniversários e Eventos
+3. Lembretes de Aniversários e Eventos
 
-- O usuário pode definir lembretes de aniversários e eventos para seus contatos.
-- O aplicativo deve exibir uma notificação no dispositivo do usuário quando um aniversário ou evento estiver próximo.
+   - O usuário pode definir lembretes de aniversários e eventos para seus contatos.
+   - O aplicativo deve exibir uma notificação no dispositivo do usuário quando um aniversário ou evento estiver próximo.
 
-5. Menu
+4. Menu
 
-- O aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
+   - O aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
 
-6. Configurações
+5. Configurações
 
-- O aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
+   - O aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
 
-7. Localização de Contatos
+6. Localização de Contatos
 
-- O aplicativo deve integrar com um serviço de mapeamento para exibir a localização dos contatos no mapa.
-- O usuário pode visualizar a localização de seus contatos no mapa.
+   - O aplicativo deve integrar com um serviço de mapeamento para exibir a localização dos contatos no mapa.
+   - O usuário pode visualizar a localização de seus contatos no mapa.
 
-8. Perfil do Usuário
+7. Perfil do Usuário
 
 - O usuário pode alterar suas informações de perfil, incluindo a foto de perfil.
 - O aplicativo deve armazenar e exibir corretamente as informações de perfil do usuário.
@@ -69,65 +69,65 @@ Agenda de Contatos com Recursos Avançados
 
 1. Segurança:
 
-- O aplicativo deve garantir a segurança dos dados dos usuários, utilizando criptografia e autenticação.
-- Deve ser implementado um sistema de permissões de acesso, impedindo que usuários não cadastrados acessem informações privadas.
+   - O aplicativo deve garantir a segurança dos dados dos usuários, utilizando criptografia e autenticação.
+   - Deve ser implementado um sistema de permissões de acesso, impedindo que usuários não cadastrados acessem informações privadas.
 
 2. Usabilidade:
 
-- A interface do aplicativo deve ser intuitiva, de fácil navegação e minimalista.
+   - A interface do aplicativo deve ser intuitiva, de fácil navegação e minimalista.
 
 3. Desempenho:
 
-- O aplicativo deve ter um tempo de resposta rápido, especialmente no carregamento de listas de contatos e no acesso a informações.
-- O aplicativo deve ser otimizado para consumo eficiente de recursos do dispositivo, como bateria e memória.
+   - O aplicativo deve ter um tempo de resposta rápido, especialmente no carregamento de listas de contatos e no acesso a informações.
+   - O aplicativo deve ser otimizado para consumo eficiente de recursos do dispositivo, como bateria e memória.
 
 ## Testes de Caixa Preta:
 
 1. Validação de Usuário Não Cadastrado:
 
-__Objetivo__: Verificar se um usuário não cadastrado não consegue acessar a funcionalidade do aplicativo.  
-__Entrada__: Tentativa de login com credenciais inválidas.  
-__Resultado esperado__: O aplicativo deve impedir o acesso do usuário não cadastrado e exibir uma mensagem de erro informando que o acesso é restrito a usuários cadastrados.  
+    __Objetivo__: Verificar se um usuário não cadastrado não consegue acessar a funcionalidade do aplicativo.  
+    __Entrada__: Tentativa de login com credenciais inválidas.  
+    __Resultado esperado__: O aplicativo deve impedir o acesso do usuário não cadastrado e exibir uma mensagem de erro informando que o acesso é restrito a usuários cadastrados.  
 
 2. Validação de Campos Obrigatórios:
 
-__Objetivo__: Verificar se o aplicativo valida a presença de campos obrigatórios.  
-__Entrada__: Tentativa de adicionar um novo contato com um campo obrigatório (como *número de telefone*) vazio.  
-__Resultado esperado__: O aplicativo deve exibir uma mensagem de erro informando que o campo obrigatório precisa ser preenchido.  
+    __Objetivo__: Verificar se o aplicativo valida a presença de campos obrigatórios.  
+    __Entrada__: Tentativa de adicionar um novo contato com um campo obrigatório (como *número de telefone*) vazio.  
+    __Resultado esperado__: O aplicativo deve exibir uma mensagem de erro informando que o campo obrigatório precisa ser preenchido.  
 
 4. Validação de Entrada Inválida:
 
-__Objetivo__: Verificar se o aplicativo valida a entrada de dados em campos numéricos.  
-__Entrada__: Tentar inserir um texto em um campo numérico (como o campo de *número de telefone*).  
-__Resultado esperado__: O aplicativo deve impedir a entrada de texto em um campo numérico e exibir uma mensagem de erro informando que o formato da entrada é inválido.
+    __Objetivo__: Verificar se o aplicativo valida a entrada de dados em campos numéricos.  
+    __Entrada__: Tentar inserir um texto em um campo numérico (como o campo de *número de telefone*).  
+    __Resultado esperado__: O aplicativo deve impedir a entrada de texto em um campo numérico e exibir uma mensagem de erro informando que o formato da entrada é inválido.
 
 ## Entidades
 
 1. User
-- id: INTEGER (PK, AutoIncrement)
-- name: TEXT
-- email: TEXT (Unique)
-- passwordHash: TEXT (Armazena o hash da senha concatenado com o salt)
-- profilePictureUri: TEXT
+   - id: INTEGER (PK, AutoIncrement)
+   - name: TEXT
+   - email: TEXT (Unique)
+   - passwordHash: TEXT (Armazena o hash da senha concatenado com o salt)
+   - profilePictureUri: TEXT
 
 2. Contact
-- id: INTEGER (PK, AutoIncrement)
-- userId: INTEGER (FK, referencia User.id)
-- name: TEXT
-- phoneNumber: TEXT
-- email: TEXT
-- address: TEXT
-- birthdate: TEXT
-- photoUri: TEXT
-- location: TEXT
+   - id: INTEGER (PK, AutoIncrement)
+   - userId: INTEGER (FK, referencia User.id)
+   - name: TEXT
+   - phoneNumber: TEXT
+   - email: TEXT
+   - address: TEXT
+   - birthdate: TEXT
+   - photoUri: TEXT
+   - location: TEXT
 
 3. Reminder
-- id: INTEGER (PK, AutoIncrement)
-- contactId: INTEGER (FK, referencia Contact.id)
-- type: TEXT (ex: 'Birthday' ou 'Event')
-- date: TEXT
-- notificationMessage: TEXT
+   - id: INTEGER (PK, AutoIncrement)
+   - contactId: INTEGER (FK, referencia Contact.id)
+   - type: TEXT (ex: 'Birthday' ou 'Event')
+   - date: TEXT
+   - notificationMessage: TEXT
 
 ### Relacionamentos
-- User-Contact: Um usuário pode ter vários contatos.
-- Contact-Reminder: Um contato pode ter vários lembretes.
+    - User-Contact: Um usuário pode ter vários contatos.
+    - Contact-Reminder: Um contato pode ter vários lembretes.

@@ -10,31 +10,8 @@
         android:id="@+id/recyclerViewContacts"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="8dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/alphabet_nav" />
-
-    <LinearLayout
-        android:id="@+id/alphabet_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingEnd="4dp"
-        android:paddingStart="4dp">
-
-        <TextView
-            android:id="@+id/letter_A"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A"
-            android:textColor="@android:color/black" />
-        <!-- Repeat for other letters B-Z -->
-    </LinearLayout>
-
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

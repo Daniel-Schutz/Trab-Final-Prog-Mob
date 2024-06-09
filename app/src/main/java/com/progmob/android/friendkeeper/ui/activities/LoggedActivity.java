@@ -31,26 +31,27 @@ public class LoggedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applySavedLanguage();
+        Log.d(TAG, "onCreate: Início");
         setContentView(R.layout.activity_logged);
 
         try {
             Toolbar toolbar = findViewById(R.id.barraFerramentas);
             setSupportActionBar(toolbar);
+            Log.d(TAG, "onCreate: Toolbar configurada com sucesso");
         } catch (Exception e) {
-            Log.e(TAG, "Error setting up toolbar: ", e);
+            Log.e(TAG, "Erro ao configurar a toolbar: ", e);
         }
 
         if (savedInstanceState == null) {
             loadContactListFragment();
+            Log.d(TAG, "onCreate: Carregar fragmento de lista de contatos");
         }
-
-        applySavedLanguage();
 
         if (!isLoggedIn()) {
             redirectToLogin();
+            Log.d(TAG, "onCreate: Usuário não está logado, redirecionando para login");
         }
-
-//        TODO: Ao abrir a atividade o app fecha aqui
     }
 
     private boolean isLoggedIn() {
@@ -72,11 +73,14 @@ public class LoggedActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: Início");
         int userId = getLoggedInUserId();
         if (userId == -1) {
             redirectToLogin();
+            Log.d(TAG, "onResume: Usuário não está logado, redirecionando para login");
         } else {
             loadContactListFragment();
+            Log.d(TAG, "onResume: Carregar fragmento de lista de contatos");
         }
     }
 
@@ -88,17 +92,20 @@ public class LoggedActivity extends AppCompatActivity {
         fragment.setArguments(args);
 
         loadFragment(fragment);
+        Log.d(TAG, "loadContactListFragment: Fragmento de lista de contatos carregado");
     }
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
+        transaction.replace(R.id.fragment_container_activity_logged, fragment);
         transaction.commit();
+        Log.d(TAG, "loadFragment: Transação de fragmento cometida");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        Log.d(TAG, "onCreateOptionsMenu: Menu inflado");
 
         MenuItem nightModeItem = menu.findItem(R.id.action_night_mode);
         nightModeItem.setActionView(R.layout.menu_item_switch);
@@ -126,15 +133,32 @@ public class LoggedActivity extends AppCompatActivity {
 
         if (id == R.id.action_language_english) {
             setLocale("en");
+            recreate();
             return true;
         } else if (id == R.id.action_language_portuguese) {
             setLocale("pt");
+            recreate();
             return true;
         } else if (id == R.id.action_language_spanish) {
             setLocale("es");
+            recreate();
             return true;
         } else if (id == R.id.action_language_french) {
             setLocale("fr");
+            recreate();
+            return true;
+        } else if (id == R.id.action_night_mode) {
+            SwitchCompat nightModeSwitch = (SwitchCompat) item.getActionView().findViewById(R.id.switch_night_mode);
+            if (nightModeSwitch != null) {
+                nightModeSwitch.setChecked(!nightModeSwitch.isChecked());
+                if (nightModeSwitch.isChecked()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                saveNightModeState(nightModeSwitch.isChecked());
+                recreate();
+            }
             return true;
         } else if (id == R.id.action_logout) {
             logout();
@@ -143,6 +167,7 @@ public class LoggedActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     private boolean isNightModeEnabled() {
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -168,8 +193,9 @@ public class LoggedActivity extends AppCompatActivity {
         editor.putString(LANGUAGE_KEY, lang);
         editor.apply();
 
-        // Restart activity to apply language change
-        recreate();
+        if (!locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
+            recreate();
+        }
     }
 
     private void applySavedLanguage() {

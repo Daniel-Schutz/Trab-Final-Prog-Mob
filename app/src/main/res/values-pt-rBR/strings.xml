@@ -8,10 +8,6 @@
     <string name="preencher_campos">Preencha todos os campos</string>
     <string name="nome_contato">Nome do contato</string>
     <string name="tel_contato">Telefone do contato</string>
-    <string name="night_mode">Modo Noturno</string>
-    <string name="idioma">Idioma</string>
-    <string name="english">Inglês</string>
-    <string name="portuguese">Português</string>
 
     <!-- Tela de Login -->
     <string name="hint_email_login">Email</string>
@@ -25,7 +21,13 @@
     <string name="hint_senha_cadastrar">Senha</string>
     <string name="txt_button_registrar">Registrar</string>
     <string name="txt_tela_login">Já tem uma conta? Faça login aqui</string>
+
+    <!--  Menu  -->
+    <string name="logout">Sair</string>
+    <string name="night_mode">Modo Noturno</string>
+    <string name="idioma">Idioma</string>
+    <string name="english">Inglês</string>
+    <string name="portuguese">Português</string>
     <string name="spanish">Espanhol</string>
     <string name="french">Francês</string>
-    <string name="logout">Sair</string>
 </resources>

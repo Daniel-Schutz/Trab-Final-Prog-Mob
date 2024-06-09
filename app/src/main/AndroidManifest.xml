@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> <!-- Custom Permission -->
     <permission
@@ -18,9 +19,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendKeeper">
-        <activity
-            android:name=".ui.activities.LoggedActivity"
-            android:exported="false" />
+
         <!-- OutLogged Activity -->
         <activity
             android:name=".ui.activities.OutLoggedActivity"
@@ -30,6 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Logged Activity -->
+        <activity
+            android:name=".ui.activities.LoggedActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- Notification Receiver -->
         <receiver
             android:name=".utils.NotificationReceiver"

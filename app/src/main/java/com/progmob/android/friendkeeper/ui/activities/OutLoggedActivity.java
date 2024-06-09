@@ -46,12 +46,12 @@ public class OutLoggedActivity extends AppCompatActivity implements LoginFragmen
     private void redirectToLoggedActivity() {
         Intent intent = new Intent(OutLoggedActivity.this, LoggedActivity.class);
         startActivity(intent);
-        // finish();
+        finish();
     }
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
+        transaction.replace(R.id.fragment_container_activity_logged_out, fragment);
         transaction.commit();
     }
 

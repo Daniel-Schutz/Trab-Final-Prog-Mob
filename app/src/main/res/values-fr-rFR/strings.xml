@@ -8,6 +8,22 @@
     <string name="preencher_campos">Veuillez remplir tous les champs</string>
     <string name="nome_contato">Nom du contact</string>
     <string name="tel_contato">Numéro de téléphone du contact</string>
+
+    <!-- Tela de Login -->
+    <string name="hint_email_login">Email</string>
+    <string name="hint_senha_login">Mot de passe</string>
+    <string name="txt_button_entrar">Connexion</string>
+    <string name="txt_tela_cadastro">Vous n\'avez pas de compte? Inscrivez-vous ici</string>
+
+    <!-- Tela de Registro -->
+    <string name="hint_nome_cadastrar">Nom</string>
+    <string name="hint_email_cadastrar">Email</string>
+    <string name="hint_senha_cadastrar">Mot de passe</string>
+    <string name="txt_button_registrar">S\'inscrire</string>
+    <string name="txt_tela_login">Vous avez déjà un compte? Connectez-vous ici</string>
+
+    <!--  Menu  -->
+    <string name="logout">Déconnexion</string>
     <string name="night_mode">Mode Nuit</string>
     <string name="idioma">Langue</string>
     <string name="english">Anglais</string>
@@ -15,16 +31,5 @@
     <string name="spanish">Espagnol</string>
     <string name="french">Français</string>
 
-    <!-- Écran de connexion -->
-    <string name="hint_email_login">Email</string>
-    <string name="hint_senha_login">Mot de passe</string>
-    <string name="txt_button_entrar">Connexion</string>
-    <string name="txt_tela_cadastro">Vous n\'avez pas de compte? Inscrivez-vous ici</string>
 
-    <!-- Écran d'inscription -->
-    <string name="hint_nome_cadastrar">Nom</string>
-    <string name="hint_email_cadastrar">Email</string>
-    <string name="hint_senha_cadastrar">Mot de passe</string>
-    <string name="txt_button_registrar">S\'inscrire</string>
-    <string name="txt_tela_login">Vous avez déjà un compte? Connectez-vous ici</string>
 </resources>

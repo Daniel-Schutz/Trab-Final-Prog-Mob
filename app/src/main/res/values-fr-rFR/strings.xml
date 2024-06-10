@@ -1,35 +1,63 @@
 <resources>
-    <!-- Général -->
+    <string name="app_name" translatable="false">FriendKeeper</string>
     <string name="logo_description">Logo de l\'application</string>
     <string name="dados_nao_prontos">Les données ne sont pas prêtes ou n\'existent pas.</string>
-    <string name="login_invalido">Email ou mot de passe invalide</string>
+    <string name="login_invalido">E-mail ou mot de passe invalide</string>
     <string name="usuario_registrado">Utilisateur enregistré avec succès</string>
     <string name="erro_registro_usuario">Erreur lors de l\'enregistrement de l\'utilisateur</string>
-    <string name="preencher_campos">Veuillez remplir tous les champs</string>
     <string name="nome_contato">Nom du contact</string>
-    <string name="tel_contato">Numéro de téléphone du contact</string>
-
-    <!-- Tela de Login -->
-    <string name="hint_email_login">Email</string>
-    <string name="hint_senha_login">Mot de passe</string>
-    <string name="txt_button_entrar">Connexion</string>
-    <string name="txt_tela_cadastro">Vous n\'avez pas de compte? Inscrivez-vous ici</string>
-
-    <!-- Tela de Registro -->
-    <string name="hint_nome_cadastrar">Nom</string>
-    <string name="hint_email_cadastrar">Email</string>
-    <string name="hint_senha_cadastrar">Mot de passe</string>
-    <string name="txt_button_registrar">S\'inscrire</string>
-    <string name="txt_tela_login">Vous avez déjà un compte? Connectez-vous ici</string>
-
-    <!--  Menu  -->
-    <string name="logout">Déconnexion</string>
+    <string name="tel_contato">Téléphone du contact</string>
     <string name="night_mode">Mode Nuit</string>
     <string name="idioma">Langue</string>
     <string name="english">Anglais</string>
     <string name="portuguese">Portugais</string>
     <string name="spanish">Espagnol</string>
     <string name="french">Français</string>
-
-
+    <string name="hint_email_login">E-mail</string>
+    <string name="hint_senha_login">Mot de passe</string>
+    <string name="txt_button_entrar">Se connecter</string>
+    <string name="txt_tela_cadastro">Vous n\'avez pas de compte ? Inscrivez-vous ici</string>
+    <string name="hint_nome_cadastrar">Nom</string>
+    <string name="hint_email_cadastrar">E-mail</string>
+    <string name="hint_senha_cadastrar">Mot de passe</string>
+    <string name="txt_button_registrar">S\'inscrire</string>
+    <string name="txt_tela_login">Vous avez déjà un compte ? Connectez-vous ici</string>
+    <string name="logout">Déconnexion</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="add_ct_name_hint">Nom</string>
+    <string name="add_ct_telefone_hint">Téléphone</string>
+    <string name="add_ct_email_hint">E-mail</string>
+    <string name="add_ct_endereco_hint">Adresse</string>
+    <string name="add_ct_data_nasc_hint">Date de Naissance</string>
+    <string name="add_ct_salvar_btn">Enregistrer le Contact</string>
+    <string name="add_address_titulo_hint">Titre de l\'Adresse</string>
+    <string name="add_address_endereco_hint">Adresse</string>
+    <string name="add_address_geocodificar_btn">Géocoder</string>
+    <string name="add_address_salvar_btn">Enregistrer l\'Adresse</string>
+    <string name="add_ct_selec_endereco_btn">Sélectionner</string>
+    <string name="add_ct_add_photo_btn">Ajouter une Photo</string>
+    <string name="add_ct_photo_contentDescription">Photo du Contact</string>
+    <string name="frag_list_ct_btn_add">Ajouter un Contact</string>
+    <string name="add_ct_add_foto_tirar_foto">Prendre une Photo</string>
+    <string name="add_ct_add_foto_selecionar_foto">Sélectionner dans la Galerie</string>
+    <string name="verif_add_ct_nome_telefone">Le nom et le téléphone sont obligatoires</string>
+    <string name="verif_add_ct_contato_salvo">Contact enregistré avec succès</string>
+    <string name="verif_todos_campos">Veuillez remplir tous les champs obligatoires</string>
+    <string name="verif_perm_n_concedidas">Permissions nécessaires non accordées</string>
+    <string name="add_foto">Ajouter une Photo</string>
+    <string name="verif_inserir_endereco">Veuillez entrer une adresse</string>
+    <string name="verif_endereco_n_encontrado">Adresse non trouvée</string>
+    <string name="verif_erro_geocod_endereco">Erreur lors du géocodage de l\'adresse</string>
+    <string name="perm_necessaria">Permission Requise</string>
+    <string name="perg_perm_agendar_alarmes_exatos">Cette application a besoin de la permission pour programmer des alarmes exactes. Voulez-vous accorder cette permission ?</string>
+    <string name="sim">Oui</string>
+    <string name="nao">Non</string>
+    <string name="loc_endereco">Localisation de l\'Adresse</string>
+    <string name="erro_login">Échec de la connexion</string>
+    <string name="config_permissoes">Paramètres de Permission</string>
+    <string name="permissao">Permission</string>
+    <string name="permitir">Autoriser</string>
+    <string name="permission_granted">Permission Accordée</string>
+    <string name="permission_allow">Autoriser</string>
+    <string name="permission_denied">Permission Refusée</string>
 </resources>

@@ -10,5 +10,4 @@ public class User {
     public String name;
     public String email;
     public String passwordHash;  // senha com hash
-    public String profilePictureUri; // URI para a foto do perfil
 }

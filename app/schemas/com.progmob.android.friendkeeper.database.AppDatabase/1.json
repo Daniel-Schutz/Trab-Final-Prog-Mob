@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e08440218d68da519eb87d7a5461e202",
+    "identityHash": "902485ef8abc78ff1ec6e354388c15a7",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `email` TEXT, `passwordHash` TEXT, `profilePictureUri` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `email` TEXT, `passwordHash` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,26 +31,20 @@
             "columnName": "passwordHash",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "profilePictureUri",
-            "columnName": "profilePictureUri",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
+          "autoGenerate": true,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": true
+          ]
         },
         "indices": [],
         "foreignKeys": []
       },
       {
-        "tableName": "contacts",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `name` TEXT, `phoneNumber` TEXT, `email` TEXT, `address` TEXT, `birthdate` TEXT, `photoUri` TEXT, `location` TEXT, FOREIGN KEY(`userId`) REFERENCES `User`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "tableName": "Contact",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` INTEGER NOT NULL, `name` TEXT, `phoneNumber` TEXT, `email` TEXT, `addressId` INTEGER NOT NULL, `birthdate` TEXT, `photoUri` TEXT, FOREIGN KEY(`addressId`) REFERENCES `Address`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -83,10 +77,10 @@
             "notNull": false
           },
           {
-            "fieldPath": "address",
-            "columnName": "address",
-            "affinity": "TEXT",
-            "notNull": false
+            "fieldPath": "addressId",
+            "columnName": "addressId",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "birthdate",
@@ -99,38 +93,32 @@
             "columnName": "photoUri",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "location",
-            "columnName": "location",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
+          "autoGenerate": true,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": true
+          ]
         },
         "indices": [
           {
-            "name": "index_contacts_userId",
+            "name": "index_Contact_addressId",
             "unique": false,
             "columnNames": [
-              "userId"
+              "addressId"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_contacts_userId` ON `${TABLE_NAME}` (`userId`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Contact_addressId` ON `${TABLE_NAME}` (`addressId`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "User",
+            "table": "Address",
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
-              "userId"
+              "addressId"
             ],
             "referencedColumns": [
               "id"
@@ -139,8 +127,8 @@
         ]
       },
       {
-        "tableName": "reminders",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `contactId` INTEGER NOT NULL, `type` TEXT, `date` TEXT, `notificationMessage` TEXT, FOREIGN KEY(`contactId`) REFERENCES `contacts`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "tableName": "Reminder",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `contactId` INTEGER NOT NULL, `type` TEXT, `date` TEXT, `notificationMessage` TEXT, FOREIGN KEY(`contactId`) REFERENCES `Contact`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -174,25 +162,25 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": true,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": true
+          ]
         },
         "indices": [
           {
-            "name": "index_reminders_contactId",
+            "name": "index_Reminder_contactId",
             "unique": false,
             "columnNames": [
               "contactId"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_reminders_contactId` ON `${TABLE_NAME}` (`contactId`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Reminder_contactId` ON `${TABLE_NAME}` (`contactId`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "contacts",
+            "table": "Contact",
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -203,12 +191,50 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "Address",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e08440218d68da519eb87d7a5461e202')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '902485ef8abc78ff1ec6e354388c15a7')"
     ]
   }
 }

@@ -18,22 +18,10 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
     <!-- Desativa a ActionBar fornecida pelo tema. -->
-    <style name="Theme.FriendKeeper.NoActionBar">
+    <style name="Theme.FriendKeeper.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <!-- Base application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here -->
-        <item name="colorPrimary">@color/color_logo</item>
-        <item name="colorPrimaryDark">@color/color_logo</item>
-        <item name="colorAccent">@color/color_logo</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 </resources>

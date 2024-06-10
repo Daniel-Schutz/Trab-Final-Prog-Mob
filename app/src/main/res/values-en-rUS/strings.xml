@@ -1,34 +1,62 @@
 <resources>
-    <!-- General -->
-    <string name="logo_description">App logo</string>
+    <string name="logo_description">App Logo</string>
     <string name="dados_nao_prontos">Data is not ready or does not exist.</string>
     <string name="login_invalido">Invalid email or password</string>
-    <string name="usuario_registrado">User registered successfully</string>
+    <string name="usuario_registrado">User successfully registered</string>
     <string name="erro_registro_usuario">Error registering user</string>
-    <string name="preencher_campos">Please fill in all fields</string>
-    <string name="nome_contato">Contact name</string>
-    <string name="tel_contato">Contact phone number</string>
-
-    <!-- Tela de Login -->
-    <string name="hint_email_login">Email</string>
-    <string name="hint_senha_login">Password</string>
-    <string name="txt_button_entrar">Login</string>
-    <string name="txt_tela_cadastro">Don\'t have an account? Register here</string>
-
-    <!-- Tela de Registro -->
-    <string name="hint_nome_cadastrar">Name</string>
-    <string name="hint_email_cadastrar">Email</string>
-    <string name="hint_senha_cadastrar">Password</string>
-    <string name="txt_button_registrar">Register</string>
-    <string name="txt_tela_login">Already have an account? Login here</string>
-
-    <!--  Menu  -->
-    <string name="logout">Logout</string>
+    <string name="nome_contato">Contact Name</string>
+    <string name="tel_contato">Contact Phone</string>
     <string name="night_mode">Night Mode</string>
     <string name="idioma">Language</string>
     <string name="english">English</string>
     <string name="portuguese">Portuguese</string>
     <string name="spanish">Spanish</string>
     <string name="french">French</string>
-
+    <string name="hint_email_login">Email</string>
+    <string name="hint_senha_login">Password</string>
+    <string name="txt_button_entrar">Login</string>
+    <string name="txt_tela_cadastro">Don\'t have an account? Sign up here</string>
+    <string name="hint_nome_cadastrar">Name</string>
+    <string name="hint_email_cadastrar">Email</string>
+    <string name="hint_senha_cadastrar">Password</string>
+    <string name="txt_button_registrar">Register</string>
+    <string name="txt_tela_login">Already have an account? Log in here</string>
+    <string name="logout">Logout</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_ct_name_hint">Name</string>
+    <string name="add_ct_telefone_hint">Phone</string>
+    <string name="add_ct_email_hint">Email</string>
+    <string name="add_ct_endereco_hint">Address</string>
+    <string name="add_ct_data_nasc_hint">Date of Birth</string>
+    <string name="add_ct_salvar_btn">Save Contact</string>
+    <string name="add_address_titulo_hint">Address Title</string>
+    <string name="add_address_endereco_hint">Address</string>
+    <string name="add_address_geocodificar_btn">Geocode</string>
+    <string name="add_address_salvar_btn">Save Address</string>
+    <string name="add_ct_selec_endereco_btn">Select</string>
+    <string name="add_ct_add_photo_btn">Add Photo</string>
+    <string name="add_ct_photo_contentDescription">Contact Photo</string>
+    <string name="frag_list_ct_btn_add">Add Contact</string>
+    <string name="add_ct_add_foto_tirar_foto">Take Photo</string>
+    <string name="add_ct_add_foto_selecionar_foto">Select from Gallery</string>
+    <string name="verif_add_ct_nome_telefone">Name and Phone are required</string>
+    <string name="verif_add_ct_contato_salvo">Contact saved successfully</string>
+    <string name="verif_todos_campos">Please fill in all required fields</string>
+    <string name="verif_perm_n_concedidas">Necessary permissions not granted</string>
+    <string name="add_foto">Add Photo</string>
+    <string name="verif_inserir_endereco">Please enter an address</string>
+    <string name="verif_endereco_n_encontrado">Address not found</string>
+    <string name="verif_erro_geocod_endereco">Error geocoding the address</string>
+    <string name="perm_necessaria">Permission Required</string>
+    <string name="perg_perm_agendar_alarmes_exatos">This app needs permission to schedule exact alarms. Do you want to grant this permission?</string>
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
+    <string name="loc_endereco">Address Location</string>
+    <string name="erro_login">Failed to login</string>
+    <string name="config_permissoes">Permission Settings</string>
+    <string name="permissao">Permission</string>
+    <string name="permitir">Allow</string>
+    <string name="permission_granted">Permission Granted</string>
+    <string name="permission_allow">Allow</string>
+    <string name="permission_denied">Permission Denied</string>
 </resources>

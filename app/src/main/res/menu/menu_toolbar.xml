@@ -35,4 +35,9 @@
         android:title="@string/logout"
         android:icon="@drawable/ic_logout"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_permission_settings"
+        android:title="@string/config_permissoes"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

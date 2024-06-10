@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.progmob.android.friendkeeper">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> <!-- Custom Permission -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <permission
         android:name="com.progmob.android.friendkeeper.PERMISSION_RECEIVE_NOTIFICATIONS"
         android:protectionLevel="normal" />
@@ -20,12 +32,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendKeeper">
 
+        <!-- Configuração de Permissões Activity -->
+        <activity
+            android:name=".ui.activities.PermissionSettingsActivity"
+            android:exported="false" />
+
+        <!-- Configuração da API de localização -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
+
+        <!-- Adicionar Endereço Activity -->
+        <activity
+            android:name=".ui.activities.AddAddressActivity"
+            android:exported="false" />
+
         <!-- OutLogged Activity -->
         <activity
             android:name=".ui.activities.OutLoggedActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,9 +62,7 @@
         <activity
             android:name=".ui.activities.LoggedActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Notification Receiver -->
+            android:theme="@style/Theme.FriendKeeper.NoActionBar" /> <!-- Notification Receiver -->
         <receiver
             android:name=".utils.NotificationReceiver"
             android:exported="true"
@@ -45,5 +71,12 @@
                 <action android:name="com.progmob.android.friendkeeper.NOTIFICATION_EVENT" />
             </intent-filter>
         </receiver>
+
+        <!-- Adicionar Contatos Activity -->
+        <activity
+            android:name=".ui.activities.AddContactActivity"
+            android:exported="true"/>
+
     </application>
+
 </manifest>

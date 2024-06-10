@@ -12,10 +12,12 @@ glide = "4.12.0"
 gradle = "8.0.2"
 junitVersion = "4.13.2"
 materialVersion = "1.12.0"
+playServicesMapsVersion = "18.2.0"
 roomCompiler = "2.6.1"
 roomKtx = "2.6.1"
 roomRuntimeVersion = "2.6.1"
 roomRxjava2 = "2.6.1"
+activityVersion = "1.9.0"
 
 
 [libraries]
@@ -34,7 +36,9 @@ dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = 
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { module = "junit:junit", version.ref = "junitVersion" }
-material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+material-v1120 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
 
 
 [plugins]

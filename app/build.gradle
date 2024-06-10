@@ -40,16 +40,18 @@ android {
 
 dependencies {
     implementation libs.androidx.appcompat.v161
-    implementation libs.material.v190
+    implementation libs.material.v1120
     implementation libs.androidx.activity.ktx.v160
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.room.runtime.v242
     implementation libs.commons.codec
     implementation libs.circleimageview
     implementation libs.glide
+    implementation(libs.play.services.maps)
 
     implementation libs.androidx.room.ktx.v242
     implementation libs.androidx.room.rxjava2.v242
+    implementation libs.androidx.activity
 
     androidTestImplementation libs.androidx.junit.v113
     androidTestImplementation libs.androidx.espresso.core.v340

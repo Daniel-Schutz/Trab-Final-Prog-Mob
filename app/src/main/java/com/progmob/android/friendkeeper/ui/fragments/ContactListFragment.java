@@ -2,10 +2,10 @@ package com.progmob.android.friendkeeper.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,35 +13,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.progmob.android.friendkeeper.R;
 import com.progmob.android.friendkeeper.database.AppDatabase;
+import com.progmob.android.friendkeeper.entities.Address;
 import com.progmob.android.friendkeeper.entities.Contact;
 import com.progmob.android.friendkeeper.ui.activities.AddContactActivity;
+import com.progmob.android.friendkeeper.ui.activities.ContactInfoActivity;
 import com.progmob.android.friendkeeper.ui.adapters.ContactListAdapter;
 import com.progmob.android.friendkeeper.utils.PreferencesManager;
 
 import java.util.List;
 
-/**
- * A classe ContactListFragment é responsável por exibir a lista de contatos do usuário.
- * Ela inclui um RecyclerView para mostrar os contatos e um FloatingActionButton para
- * adicionar novos contatos. A lista de contatos é carregada do banco de dados e atualizada
- * na interface do usuário.
- */
 public class ContactListFragment extends Fragment {
 
     private ContactListAdapter adapter;
     private int userId;
 
-    /**
-     * Método chamado para inflar a view do fragmento.
-     *
-     * @param inflater           O LayoutInflater que pode ser usado para inflar qualquer view no fragmento.
-     * @param container          Se não-nulo, este é o pai da view que o fragmento deve inflar.
-     * @param savedInstanceState Se não-nulo, este fragmento está sendo reconstruído a partir de um estado salvo anteriormente.
-     * @return A View para o layout do fragmento.
-     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,8 +39,26 @@ public class ContactListFragment extends Fragment {
         adapter = new ContactListAdapter(getActivity());
         recyclerViewContacts.setAdapter(adapter);
 
-        FloatingActionButton fab = view.findViewById(R.id.floating_action_button);
-        fab.setOnClickListener(v -> openAddContactActivity());
+        adapter.setOnItemClickListener(position -> {
+            Contact contact = adapter.getContact(position);
+            if (contact != null) {
+                Address address = getAddressById(contact.getAddressId());
+                if (address != null) {
+                    Intent intent = new Intent(getActivity(), ContactInfoActivity.class);
+                    intent.putExtra("contact_name", contact.getName());
+                    intent.putExtra("contact_phone", contact.getPhoneNumber());
+                    intent.putExtra("contact_email", contact.getEmail());
+                    intent.putExtra("contact_address", address.getTitle());
+                    intent.putExtra("contact_latitude", address.getLatitude());
+                    intent.putExtra("contact_longitude", address.getLongitude());
+                    intent.putExtra("contact_birthday", contact.getBirthdate());
+                    intent.putExtra("contact_photo_uri", contact.getPhotoUri() != null ? contact.getPhotoUri().toString() : null);
+                    startActivity(intent);
+                } else {
+                    Log.e("ContactListFragment", "Endereço não encontrado para o contato ID: " + contact.getId());
+                }
+            }
+        });
 
         PreferencesManager preferencesManager = PreferencesManager.getInstance(getActivity());
         userId = preferencesManager.getUserId();
@@ -63,9 +68,21 @@ public class ContactListFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Carrega a lista de contatos do banco de dados em uma nova thread e atualiza o adaptador.
-     */
+    private Address getAddressById(int addressId) {
+        Address[] address = new Address[1];
+        Thread thread = new Thread(() -> {
+            AppDatabase db = AppDatabase.getDatabase(getContext());
+            address[0] = db.addressDao().getAddressById(addressId);
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return address[0];
+    }
+
     private void loadContacts() {
         new Thread(() -> {
             try {
@@ -80,9 +97,6 @@ public class ContactListFragment extends Fragment {
         }).start();
     }
 
-    /**
-     * Abre a atividade para adicionar um novo contato.
-     */
     private void openAddContactActivity() {
         Intent intent = new Intent(getActivity(), AddContactActivity.class);
         startActivity(intent);

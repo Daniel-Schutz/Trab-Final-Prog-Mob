@@ -18,6 +18,11 @@ roomKtx = "2.6.1"
 roomRuntimeVersion = "2.6.1"
 roomRxjava2 = "2.6.1"
 activityVersion = "1.9.0"
+kotlin = "1.8.0"
+navigation-fragment-ktx = "2.7.7"
+navigation-ui-ktx = "2.7.7"
+navigation-fragment = "2.7.7"
+navigation-ui = "2.7.7"
 
 
 [libraries]
@@ -32,6 +37,7 @@ androidx-room-runtime-v242 = { module = "androidx.room:room-runtime", version.re
 androidx-room-rxjava2-v242 = { module = "androidx.room:room-rxjava2", version.ref = "roomRxjava2" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 commons-codec = { module = "commons-codec:commons-codec", version.ref = "commonsCodec" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
@@ -39,8 +45,13 @@ junit = { module = "junit:junit", version.ref = "junitVersion" }
 material-v1120 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation-fragment" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation-ui" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 

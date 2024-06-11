@@ -59,4 +59,5 @@
     <string name="permission_granted">Permission Granted</string>
     <string name="permission_allow">Allow</string>
     <string name="permission_denied">Permission Denied</string>
+    <string name="open_maps">Open in Maps</string>
 </resources>

@@ -29,6 +29,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     private static final String TAG = "ContactListAdapter";
 
+
     /**
      * ContactViewHolder
      * <p>
@@ -39,16 +40,23 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         private final TextView contactName; // Nome do contato
         private final TextView contactPhone; // Número de telefone do contato
 
-        private ContactViewHolder(View itemView) {
+        private ContactViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             contactAvatar = itemView.findViewById(R.id.contact_avatar);
             contactName = itemView.findViewById(R.id.contact_name);
             contactPhone = itemView.findViewById(R.id.contact_phone);
+
+            itemView.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 
     private final LayoutInflater mInflater; // Inflater para criar views
     private List<Contact> mContacts = new ArrayList<>(); // Cache dos contatos
+    private OnItemClickListener listener;
 
     /**
      * Construtor do ContactListAdapter
@@ -72,7 +80,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-        return new ContactViewHolder(itemView);
+        return new ContactViewHolder(itemView, listener);
     }
 
     /**
@@ -139,5 +147,16 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             Log.e(TAG, "Erro ao obter o número de itens", e);
             return 0;
         }
+    }
+    public Contact getContact(int position) {
+        return mContacts.get(position);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

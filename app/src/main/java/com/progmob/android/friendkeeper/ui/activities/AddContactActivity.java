@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,12 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.progmob.android.friendkeeper.R;
 import com.progmob.android.friendkeeper.database.AppDatabase;
+import com.progmob.android.friendkeeper.entities.Address;
 import com.progmob.android.friendkeeper.entities.Contact;
 import com.progmob.android.friendkeeper.utils.ImageUtil;
 import com.progmob.android.friendkeeper.utils.PermissionManager;
 import com.progmob.android.friendkeeper.utils.PreferencesManager;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -72,6 +75,11 @@ public class AddContactActivity extends AppCompatActivity {
 
     // Gerenciador de permissões
     private PermissionManager permissionManager;
+
+
+    // Variáveis para armazenar a latitude e longitude do endereço
+    private double latitude;
+    private double longitude;
 
     /**
      * Lançador para solicitar permissões múltiplas.
@@ -129,19 +137,6 @@ public class AddContactActivity extends AppCompatActivity {
                 }
             });
 
-    /**
-     * Lançador para selecionar um endereço.
-     */
-    private final ActivityResultLauncher<Intent> selectAddressLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    addressId = result.getData().getIntExtra("addressId", -1);
-                    String addressTitle = result.getData().getStringExtra("addressTitle");
-                    if (!TextUtils.isEmpty(addressTitle)) {
-                        editTextAddress.setText(addressTitle);
-                    }
-                }
-            });
 
     /**
      * Chamado quando a atividade é criada pela primeira vez.
@@ -166,7 +161,6 @@ public class AddContactActivity extends AppCompatActivity {
         permissionManager = new PermissionManager(this, REQUIRED_PERMISSIONS_BELOW_33, REQUIRED_PERMISSIONS_33_AND_ABOVE);
 
         Button buttonAddPhoto = findViewById(R.id.buttonAddPhoto);
-        Button buttonAddAddress = findViewById(R.id.buttonSelectAddress);
         Button buttonSaveContact = findViewById(R.id.buttonSaveContact);
 
         buttonAddPhoto.setOnClickListener(v -> {
@@ -180,15 +174,6 @@ public class AddContactActivity extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Erro ao verificar permissões ou exibir diálogo de fotos: ", e);
-            }
-        });
-
-        buttonAddAddress.setOnClickListener(v -> {
-            try {
-                Intent intent = new Intent(this, AddAddressActivity.class);
-                selectAddressLauncher.launch(intent);
-            } catch (Exception e) {
-                Log.e(TAG, "Erro ao iniciar AddAddressActivity: ", e);
             }
         });
 
@@ -212,11 +197,11 @@ public class AddContactActivity extends AppCompatActivity {
                 }
             }
         }
+
     }
 
-
     /**
-     * Exibe um diálogo permitindo ao usuário escolher entre tirar uma foto ou selecionar uma da galeria.
+     * Mostra um diálogo para o usuário escolher entre tirar uma nova foto ou selecionar uma existente.
      */
     private void showPhotoDialog() {
         new AlertDialog.Builder(this)
@@ -243,57 +228,99 @@ public class AddContactActivity extends AppCompatActivity {
     }
 
     /**
-     * Salva o contato no banco de dados.
-     * Valida os campos de entrada e insere um novo contato se a validação passar.
+     * Salva o contato inserido pelo usuário no banco de dados, incluindo a geocodificação e salvamento do endereço.
      */
     private void saveContact() {
+        String name = Objects.requireNonNull(editTextName.getText()).toString();
+        String phone = Objects.requireNonNull(editTextPhone.getText()).toString();
+        String email = Objects.requireNonNull(editTextEmail.getText()).toString();
+        String address = Objects.requireNonNull(editTextAddress.getText()).toString();
+        String birthday = Objects.requireNonNull(editTextBirthday.getText()).toString();
+
+        if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty() || birthday.isEmpty()) {
+            Toast.makeText(this, R.string.verif_todos_campos, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        geocodeAddress(address, name, phone, email, birthday);
+    }
+
+    /**
+     * Geocodifica o endereço inserido pelo usuário para obter as coordenadas de latitude e longitude e salva o endereço no banco de dados.
+     *
+     * @param address  O endereço inserido pelo usuário.
+     * @param name     O nome do contato.
+     * @param phone    O telefone do contato.
+     * @param email    O email do contato.
+     * @param birthday O aniversário do contato.
+     */
+    private void geocodeAddress(String address, String name, String phone, String email, String birthday) {
+        if (address.isEmpty()) {
+            Toast.makeText(this, R.string.verif_inserir_endereco, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Geocoder geocoder = new Geocoder(this);
         try {
-            String name = Objects.requireNonNull(editTextName.getText()).toString().trim();
-            String phone = Objects.requireNonNull(editTextPhone.getText()).toString().trim();
-            String email = Objects.requireNonNull(editTextEmail.getText()).toString().trim();
-            String birthday = Objects.requireNonNull(editTextBirthday.getText()).toString().trim();
-
-            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phone)) {
-                Toast.makeText(this, R.string.verif_add_ct_nome_telefone, Toast.LENGTH_SHORT).show();
-                return;
+            List<android.location.Address> addresses = geocoder.getFromLocationName(address, 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                android.location.Address location = addresses.get(0);
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+                System.out.println("lat long:"+latitude+ longitude);
+                saveAddressAndContact(name, phone, email, address, birthday);
+            } else {
+                Toast.makeText(this, R.string.verif_endereco_n_encontrado, Toast.LENGTH_SHORT).show();
             }
-
-            new Thread(() -> {
-                try {
-                    AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
-                    Contact contact = new Contact();
-                    contact.setName(name);
-                    contact.setPhoneNumber(phone);
-                    contact.setEmail(email);
-                    contact.setBirthdate(birthday);
-                    contact.setAddressId(addressId);
-                    contact.setPhotoUri(contactPhotoUri);
-                    contact.setUserId(userId);
-
-                    if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || addressId == -1) {
-                        runOnUiThread(() -> Toast.makeText(this, R.string.verif_todos_campos, Toast.LENGTH_SHORT).show());
-                        return;
-                    }
-
-                    db.contactDao().insert(contact);
-
-                    runOnUiThread(() -> {
-                        Toast.makeText(this, R.string.verif_add_ct_contato_salvo, Toast.LENGTH_SHORT).show();
-                        finish();
-                    });
-                } catch (Exception e) {
-                    Log.e(TAG, "Erro ao salvar contato: ", e);
-                }
-            }).start();
-        } catch (Exception e) {
-            Log.e(TAG, "Erro ao validar e salvar contato: ", e);
+        } catch (IOException e) {
+            Log.d(TAG, "geocodeAddress: " + e);
+            Toast.makeText(this, R.string.verif_erro_geocod_endereco, Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * Salva o estado da atividade.
+     * Salva o endereço e o contato no banco de dados.
      *
-     * @param outState O Bundle onde colocar o estado salvo.
+     * @param name     O nome do contato.
+     * @param phone    O telefone do contato.
+     * @param email    O email do contato.
+     * @param address  O endereço do contato.
+     * @param birthday O aniversário do contato.
+     */
+    private void saveAddressAndContact(String name, String phone, String email, String address, String birthday) {
+        new Thread(() -> {
+            AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+            Address addressEntity = new Address();
+            addressEntity.title = address;
+            addressEntity.latitude = latitude;
+            addressEntity.longitude = longitude;
+            long addressId = db.addressDao().insert(addressEntity);
+
+            Contact contact = new Contact();
+            contact.userId = userId;
+            contact.name = name;
+            contact.phoneNumber = phone;
+            contact.email = email;
+            contact.addressId = (int) addressId;
+            contact.birthdate = birthday;
+            if (contactPhotoUri != null) {
+                contact.photoUri = contactPhotoUri.toString();
+            }
+
+            db.contactDao().insert(contact);
+
+            runOnUiThread(() -> {
+                Intent resultIntent = new Intent();
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            });
+        }).start();
+    }
+
+
+    /**
+     * Salva o estado atual da atividade para restaurá-lo em uma recriação.
+     * @param outState O objeto Bundle no qual salvar o estado da atividade.
      */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -305,31 +332,5 @@ public class AddContactActivity extends AppCompatActivity {
         outState.putString("birthday", Objects.requireNonNull(editTextBirthday.getText()).toString());
         outState.putInt("addressId", addressId);
         outState.putParcelable("contactPhotoUri", contactPhotoUri);
-    }
-
-    /**
-     * Restaura o estado da atividade.
-     *
-     * @param savedInstanceState O Bundle contendo o estado salvo anteriormente.
-     */
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        editTextName.setText(savedInstanceState.getString("name"));
-        editTextPhone.setText(savedInstanceState.getString("phone"));
-        editTextEmail.setText(savedInstanceState.getString("email"));
-        editTextAddress.setText(savedInstanceState.getString("address"));
-        editTextBirthday.setText(savedInstanceState.getString("birthday"));
-        addressId = savedInstanceState.getInt("addressId", -1);
-
-        contactPhotoUri = savedInstanceState.getParcelable("contactPhotoUri");
-        if (contactPhotoUri != null) {
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contactPhotoUri);
-                contactImageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                Log.e(TAG, "Erro ao restaurar a imagem do contato: ", e);
-            }
-        }
     }
 }

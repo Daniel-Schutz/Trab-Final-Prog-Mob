@@ -7,13 +7,15 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Contact",
         foreignKeys = @ForeignKey(entity = Address.class,
                 parentColumns = "id",
                 childColumns = "addressId",
                 onDelete = ForeignKey.CASCADE),
         indices = {@Index(value = "addressId")})
-public class Contact {
+public class Contact implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public int userId;
@@ -23,7 +25,6 @@ public class Contact {
     public int addressId;
     public String birthdate;
     public String photoUri;
-
 
     // Getters and Setters
 
@@ -56,11 +57,11 @@ public class Contact {
     }
 
     public Uri getPhotoUri() {
-        return Uri.parse(photoUri);
+        return photoUri != null ? Uri.parse(photoUri) : null;
     }
 
     public void setPhotoUri(Uri photoUri) {
-        this.photoUri = photoUri.toString();
+        this.photoUri = photoUri != null ? photoUri.toString() : null;
     }
 
     public int getAddressId() {

@@ -36,9 +36,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+    implementation libs.glide
+    implementation libs.navigation.fragment.ktx
+    implementation libs.navigation.ui.ktx
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+    annotationProcessor libs.compiler
     implementation libs.androidx.appcompat.v161
     implementation libs.material.v1120
     implementation libs.androidx.activity.ktx.v160
@@ -51,7 +60,7 @@ dependencies {
 
     implementation libs.androidx.room.ktx.v242
     implementation libs.androidx.room.rxjava2.v242
-    implementation libs.androidx.activity
+
 
     androidTestImplementation libs.androidx.junit.v113
     androidTestImplementation libs.androidx.espresso.core.v340

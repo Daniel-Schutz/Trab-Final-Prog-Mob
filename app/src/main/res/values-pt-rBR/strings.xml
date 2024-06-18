@@ -62,4 +62,6 @@
     <string name="permission_allow">Permitir</string>
     <string name="permission_denied">Permissão negada</string>
     <string name="open_maps">Abrir no Maps</string>
+    <string name="delete_contact">Excluir Contato</string>
+    <string name="edit_photo">Editar Foto</string>
 </resources>

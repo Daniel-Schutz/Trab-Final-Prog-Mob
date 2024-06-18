@@ -61,4 +61,6 @@
     <string name="permission_allow">Autoriser</string>
     <string name="permission_denied">Permission Refusée</string>
     <string name="open_maps">Ouvrir dans Maps</string>
+    <string name="delete_contact">Effacer Contact</string>
+    <string name="edit_photo">Modifier photo</string>
 </resources>

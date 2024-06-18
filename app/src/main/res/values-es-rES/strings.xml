@@ -60,4 +60,6 @@
     <string name="permission_allow">Permitir</string>
     <string name="permission_denied">Permiso Denegado</string>
     <string name="open_maps">Abrir en Maps</string>
+    <string name="delete_contact">Borrar Contato</string>
+    <string name="edit_photo">Editar Foto</string>
 </resources>

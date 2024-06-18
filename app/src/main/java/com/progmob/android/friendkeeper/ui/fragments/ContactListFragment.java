@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.progmob.android.friendkeeper.R;
 import com.progmob.android.friendkeeper.database.AppDatabase;
 import com.progmob.android.friendkeeper.entities.Address;
@@ -29,9 +31,12 @@ public class ContactListFragment extends Fragment {
     private ContactListAdapter adapter;
     private int userId;
 
+    private FloatingActionButton addContact;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_contact_list, container, false);
 
         RecyclerView recyclerViewContacts = view.findViewById(R.id.recyclerViewContacts);
@@ -45,6 +50,7 @@ public class ContactListFragment extends Fragment {
                 Address address = getAddressById(contact.getAddressId());
                 if (address != null) {
                     Intent intent = new Intent(getActivity(), ContactInfoActivity.class);
+                    intent.putExtra("contact_id", contact.getId());
                     intent.putExtra("contact_name", contact.getName());
                     intent.putExtra("contact_phone", contact.getPhoneNumber());
                     intent.putExtra("contact_email", contact.getEmail());
@@ -64,6 +70,10 @@ public class ContactListFragment extends Fragment {
         userId = preferencesManager.getUserId();
 
         loadContacts();
+
+        // Configure the add contact button
+        addContact = view.findViewById(R.id.floating_action_button);
+        addContact.setOnClickListener(v -> openAddContactActivity());
 
         return view;
     }

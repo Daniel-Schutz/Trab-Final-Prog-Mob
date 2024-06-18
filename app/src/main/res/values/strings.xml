@@ -62,7 +62,9 @@
     <string name="permission_allow">Permitir</string>
     <string name="permission_denied">Permissão negada</string>
     <string name="open_maps">Abrir no Maps</string>
-    <string name="title_activity_contact_info">ContactInfo</string>
+    <string name="delete_contact">Excluir Contato</string>
+    <string name="edit_photo">Editar Foto</string>
+    <string name="title_activity_contact_info">Contact Info</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

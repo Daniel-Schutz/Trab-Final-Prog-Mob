@@ -66,12 +66,16 @@ public class ContactListFragment extends Fragment {
             }
         });
 
+        // Configurar o idioma com base na preferência salva
         PreferencesManager preferencesManager = PreferencesManager.getInstance(getActivity());
+        String languageCode = preferencesManager.getLanguage();
+        preferencesManager.setLocale(getActivity(), languageCode);
+
         userId = preferencesManager.getUserId();
 
         loadContacts();
 
-        // Configure the add contact button
+        // Configure o botão de adicionar contato
         addContact = view.findViewById(R.id.floating_action_button);
         addContact.setOnClickListener(v -> openAddContactActivity());
 
@@ -110,5 +114,11 @@ public class ContactListFragment extends Fragment {
     private void openAddContactActivity() {
         Intent intent = new Intent(getActivity(), AddContactActivity.class);
         startActivity(intent);
+    }
+
+    // Método para mudar o idioma quando necessário
+    private void changeLanguage(String languageCode) {
+        PreferencesManager preferencesManager = PreferencesManager.getInstance(getActivity());
+        preferencesManager.updateLanguage(getActivity(), languageCode);
     }
 }

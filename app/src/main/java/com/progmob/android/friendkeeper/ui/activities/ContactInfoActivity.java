@@ -29,6 +29,7 @@ import com.progmob.android.friendkeeper.entities.Address;
 import com.progmob.android.friendkeeper.entities.Contact;
 import com.progmob.android.friendkeeper.utils.ImageUtil;
 import com.progmob.android.friendkeeper.utils.PermissionManager;
+import com.progmob.android.friendkeeper.utils.PreferencesManager;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -140,7 +141,9 @@ public class ContactInfoActivity extends AppCompatActivity {
         deleteContact = findViewById(R.id.buttonEditContact);
         saveContact = findViewById(R.id.buttonSaveContact);
         permissionManager = new PermissionManager(this, REQUIRED_PERMISSIONS_BELOW_33, REQUIRED_PERMISSIONS_33_AND_ABOVE);
-
+        PreferencesManager preferencesManager = PreferencesManager.getInstance(this);
+        String languageCode = preferencesManager.getLanguage();
+        preferencesManager.setLocale(this, languageCode);
 
         // Obtenha os dados do contato da Intent
         Intent intent = getIntent();

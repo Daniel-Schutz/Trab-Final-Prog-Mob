@@ -1,12 +1,16 @@
 package com.progmob.android.friendkeeper.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.util.Log;
+import java.util.Locale;
 
 /**
  * PreferencesManager
- * <p>
+ *
  * Classe responsável por gerenciar as preferências compartilhadas (SharedPreferences)
  * do aplicativo, incluindo o ID do usuário, idioma e estado do modo noturno.
  */
@@ -125,5 +129,34 @@ public class PreferencesManager {
      */
     public boolean isNightModeEnabled() {
         return sharedPreferences.getBoolean(NIGHT_MODE_KEY, false);
+    }
+
+    /**
+     * Configura o idioma do contexto da aplicação.
+     *
+     * @param context O contexto da aplicação.
+     * @param languageCode O código do idioma a ser configurado.
+     */
+    public void setLocale(Context context, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        Resources resources = context.getResources();
+        Configuration config = new Configuration(resources.getConfiguration());
+        config.setLocale(locale);
+
+        context.getResources().updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    /**
+     * Atualiza o idioma e recria a atividade.
+     *
+     * @param activity A atividade atual que precisa ser recriada.
+     * @param languageCode O código do idioma a ser configurado.
+     */
+    public void updateLanguage(Activity activity, String languageCode) {
+        saveLanguage(languageCode);
+        setLocale(activity, languageCode);
+        activity.recreate();
     }
 }

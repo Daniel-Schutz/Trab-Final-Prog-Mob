@@ -149,6 +149,8 @@ public class AddContactActivity extends AppCompatActivity {
 
         // Obtém o userId a partir de PreferencesManager
         PreferencesManager preferencesManager = PreferencesManager.getInstance(this);
+        String languageCode = preferencesManager.getLanguage();
+        preferencesManager.setLocale(this, languageCode);
         userId = preferencesManager.getUserId();
 
         contactImageView = findViewById(R.id.contactImageView);

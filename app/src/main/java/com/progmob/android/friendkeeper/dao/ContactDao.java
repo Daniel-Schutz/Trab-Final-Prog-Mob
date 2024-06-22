@@ -67,5 +67,15 @@ public interface ContactDao {
      */
     @Query("SELECT * FROM Contact")
     LiveData<List<Contact>> getAllContacts();
+
+
+    /**
+     * Busca todos os contatos pelo atributo birthdate usando uma busca parcial.
+     *
+     * @param partialBirthdate Parte da data de nascimento (formato "dd/MM").
+     * @return Uma lista de entidades Contact cuja data de nascimento contém a parte fornecida.
+     */
+    @Query("SELECT * FROM Contact WHERE birthdate LIKE '%' || :partialBirthdate || '%'")
+    List<Contact> getContactsByPartialBirthdate(String partialBirthdate);
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.progmob.android.friendkeeper" >
+    package="com.progmob.android.friendkeeper">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -36,13 +36,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FriendKeeper" >
+        android:theme="@style/Theme.FriendKeeper">
+        <activity
+            android:name=".ui.activities.NotificationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/Theme.FriendKeeper" />
         <activity
             android:name=".ui.activities.ContactInfoActivity"
             android:exported="false"
             android:label="@string/title_activity_contact_info"
-            android:theme="@style/Theme.FriendKeeper" />
-        <!-- Configuração de Permissões Activity -->
+            android:theme="@style/Theme.FriendKeeper" /> <!-- Configuração de Permissões Activity -->
         <activity
             android:name=".ui.activities.PermissionSettingsActivity"
             android:exported="false" /> <!-- Configuração da API de localização -->
@@ -51,7 +55,7 @@
             android:value="YOUR_API_KEY" /> <!-- OutLogged Activity -->
         <activity
             android:name=".ui.activities.OutLoggedActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,7 +69,7 @@
         <receiver
             android:name=".utils.NotificationReceiver"
             android:exported="true"
-            android:permission="com.progmob.android.friendkeeper.PERMISSION_RECEIVE_NOTIFICATIONS" >
+            android:permission="com.progmob.android.friendkeeper.PERMISSION_RECEIVE_NOTIFICATIONS">
             <intent-filter>
                 <action android:name="com.progmob.android.friendkeeper.NOTIFICATION_EVENT" />
             </intent-filter>

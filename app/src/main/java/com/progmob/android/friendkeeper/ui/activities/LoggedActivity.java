@@ -1,26 +1,45 @@
 package com.progmob.android.friendkeeper.ui.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.progmob.android.friendkeeper.dao.ContactDao;
+import com.progmob.android.friendkeeper.database.AppDatabase;
+import com.progmob.android.friendkeeper.entities.Contact;
+import com.progmob.android.friendkeeper.ui.activities.NotificationActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import android.content.pm.PackageManager;
+import android.widget.Toast;
 
 import com.progmob.android.friendkeeper.R;
 import com.progmob.android.friendkeeper.utils.PreferencesManager;
 import com.progmob.android.friendkeeper.ui.fragments.ContactListFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+
+import static android.Manifest.permission.POST_NOTIFICATIONS;
 /**
  * LoggedActivity
  * <p>
@@ -33,6 +52,10 @@ public class LoggedActivity extends AppCompatActivity {
     // TAG para logs
     private static final String TAG = "LoggedActivity";
     private PreferencesManager preferencesManager;
+    private static final String CHANNEL_ID = "com.progmob.android.friendkeeper";
+    private static final int PERMISSION_REQUEST_CODE = 200;
+
+
 
     /**
      * Método onCreate
@@ -44,11 +67,16 @@ public class LoggedActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         preferencesManager = PreferencesManager.getInstance(this);
         applySavedLanguage();
         Log.d(TAG, "onCreate: Início");
         setContentView(R.layout.activity_logged);
+
+
+        createNotificationChannel(); // Crie o canal de notificação
+        verifyNotifyPermission(); // Verifique a permissão de notificação
 
         try {
             Toolbar toolbar = findViewById(R.id.barraFerramentas);
@@ -66,8 +94,11 @@ public class LoggedActivity extends AppCompatActivity {
         if (notLoggedIn()) {
             redirectToLogin();
             Log.d(TAG, "onCreate: Usuário não está logado, redirecionando para login");
+        } else {
+            checkForBirthdays();
         }
     }
+
 
     /**
      * Verifica se o usuário está logado.
@@ -256,4 +287,99 @@ public class LoggedActivity extends AppCompatActivity {
         preferencesManager.clearUserId();
         redirectToLogin();
     }
+
+
+    /**
+     * Verifica e solicita a permissão de notificação, se necessário.
+     */
+    private void verifyNotifyPermission() {
+        if (!checkPermission()) {
+            requestPermissions();
+        }
+    }
+
+    /**
+     * Verifica se a permissão de notificação foi concedida.
+     *
+     * @return true se a permissão foi concedida, caso contrário false.
+     */
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(getApplicationContext(), POST_NOTIFICATIONS);
+        return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
+     * Solicita a permissão de notificação.
+     */
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{POST_NOTIFICATIONS}, PERMISSION_REQUEST_CODE);
+    }
+
+    /**
+     * Verifica se há aniversários hoje e exibe uma notificação, se houver.
+     */
+    private void checkForBirthdays() {
+        new Thread(() -> {
+            String currentDate = new SimpleDateFormat("dd/MM", Locale.getDefault()).format(new Date());
+            AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+            ContactDao contactDao = db.contactDao();
+            List<Contact> contacts = contactDao.getContactsByPartialBirthdate(currentDate);
+
+            for (Contact contact : contacts) {
+                showBirthdayNotification(contact.getName());
+            }
+        }).start();
+    }
+
+    /**
+     * Exibe uma notificação para um aniversário.
+     *
+     * @param contactName O nome do contato que faz aniversário.
+     */
+    private void showBirthdayNotification(String contactName) {
+        Intent intent = new Intent(this, LoggedActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(android.R.drawable.stat_notify_more)
+                .setContentTitle("Aniversário Hoje")
+                .setContentText("Hoje é o aniversário de " + contactName + "!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        if (ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions();
+            return;
+        }
+
+        notificationManager.notify(contactName.hashCode(), builder.build());
+        //Toast.makeText(this, "Notificação de aniversário emitida", Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Cria o canal de notificação (necessário para Android 8.0 e superior).
+     */
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Birthday Notifications";
+            String description = "Notificações para aniversários de contatos";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
+
+
+
+
+
 }
+

@@ -144,14 +144,16 @@ public class AddContactActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_contact);
-
         // Obtém o userId a partir de PreferencesManager
         PreferencesManager preferencesManager = PreferencesManager.getInstance(this);
         String languageCode = preferencesManager.getLanguage();
         preferencesManager.setLocale(this, languageCode);
         userId = preferencesManager.getUserId();
+        System.out.println(languageCode);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_contact);
+
+
 
         contactImageView = findViewById(R.id.contactImageView);
         editTextName = findViewById(R.id.editTextName);

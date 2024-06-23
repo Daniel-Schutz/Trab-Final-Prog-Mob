@@ -127,6 +127,10 @@ public class ContactInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        permissionManager = new PermissionManager(this, REQUIRED_PERMISSIONS_BELOW_33, REQUIRED_PERMISSIONS_33_AND_ABOVE);
+        PreferencesManager preferencesManager = PreferencesManager.getInstance(this);
+        String languageCode = preferencesManager.getLanguage();
+        preferencesManager.setLocale(this, languageCode);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info);
 
@@ -140,10 +144,7 @@ public class ContactInfoActivity extends AppCompatActivity {
         editPhoto = findViewById(R.id.buttonAddPhoto); // Referência ao botão de editar foto
         deleteContact = findViewById(R.id.buttonEditContact);
         saveContact = findViewById(R.id.buttonSaveContact);
-        permissionManager = new PermissionManager(this, REQUIRED_PERMISSIONS_BELOW_33, REQUIRED_PERMISSIONS_33_AND_ABOVE);
-        PreferencesManager preferencesManager = PreferencesManager.getInstance(this);
-        String languageCode = preferencesManager.getLanguage();
-        preferencesManager.setLocale(this, languageCode);
+
 
         // Obtenha os dados do contato da Intent
         Intent intent = getIntent();

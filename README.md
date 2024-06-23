@@ -16,9 +16,7 @@ Agenda de Contatos com Recursos Avançados
 
    - Pode criar uma conta e fazer login no aplicativo.
    - Pode adicionar, editar, excluir e visualizar contatos.
-   - Pode definir lembretes de aniversários e eventos para seus contatos.
    - Pode visualizar a localização dos contatos em um mapa integrado.
-   - Pode alterar suas informações de perfil, incluindo foto.
 
 2. Visitante (Não Cadastrado):
 
@@ -41,29 +39,24 @@ Agenda de Contatos com Recursos Avançados
    - O usuário pode excluir um contato.
    - O usuário pode visualizar a lista de todos os seus contatos cadastrados.
 
-3. Lembretes de Aniversários e Eventos
+3. Lembretes de Aniversários
 
-   - O usuário pode definir lembretes de aniversários e eventos para seus contatos.
-   - O aplicativo deve exibir uma notificação no dispositivo do usuário quando um aniversário ou evento estiver próximo.
+   - O aplicativo deve exibir uma notificação com som no dispositivo do usuário quando for o aniversário de um de seus contatos.
 
 4. Menu
 
-   - O aplicativo deve ter um menu lateral com opções de acessar a lista de contatos, adicionar novo contato e configurações.
+   - O aplicativo deve ter um menu lateral com opções de alterar o idioma, alterar para modo noturno e gerenciar permissões.
 
-5. Configurações
 
-   - O aplicativo deve permitir que os usuários personalizem o aplicativo com opções como modo noturno, sons e notificações.
-
-6. Localização de Contatos
+5. Localização de Contatos
 
    - O aplicativo deve integrar com um serviço de mapeamento para exibir a localização dos contatos no mapa.
    - O usuário pode visualizar a localização de seus contatos no mapa.
 
 7. Perfil do Usuário
 
-- O usuário pode alterar suas informações de perfil, incluindo a foto de perfil.
 - O aplicativo deve armazenar e exibir corretamente as informações de perfil do usuário.
-
+- O aplicativo deve possuir uma funcionalidade para o usuário realizar logout.
 
 ## Requisitos Não Funcionais:
 
@@ -121,13 +114,5 @@ Agenda de Contatos com Recursos Avançados
    - photoUri: TEXT
    - location: TEXT
 
-3. Reminder
-   - id: INTEGER (PK, AutoIncrement)
-   - contactId: INTEGER (FK, referencia Contact.id)
-   - type: TEXT (ex: 'Birthday' ou 'Event')
-   - date: TEXT
-   - notificationMessage: TEXT
-
 ### Relacionamentos
     - User-Contact: Um usuário pode ter vários contatos.
-    - Contact-Reminder: Um contato pode ter vários lembretes.

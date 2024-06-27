@@ -88,12 +88,6 @@ Agenda de Contatos com Recursos Avançados
     __Entrada__: Tentativa de adicionar um novo contato com um campo obrigatório (como *número de telefone*) vazio.  
     __Resultado esperado__: O aplicativo deve exibir uma mensagem de erro informando que o campo obrigatório precisa ser preenchido.  
 
-4. Validação de Entrada Inválida:
-
-    __Objetivo__: Verificar se o aplicativo valida a entrada de dados em campos numéricos.  
-    __Entrada__: Tentar inserir um texto em um campo numérico (como o campo de *número de telefone*).  
-    __Resultado esperado__: O aplicativo deve impedir a entrada de texto em um campo numérico e exibir uma mensagem de erro informando que o formato da entrada é inválido.
-
 ## Entidades
 
 1. User

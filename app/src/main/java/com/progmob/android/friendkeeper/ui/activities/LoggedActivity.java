@@ -1,20 +1,19 @@
 package com.progmob.android.friendkeeper.ui.activities;
 
+import static android.Manifest.permission.POST_NOTIFICATIONS;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.progmob.android.friendkeeper.dao.ContactDao;
-import com.progmob.android.friendkeeper.database.AppDatabase;
-import com.progmob.android.friendkeeper.entities.Contact;
-import com.progmob.android.friendkeeper.ui.activities.NotificationActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -25,21 +24,19 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import android.content.pm.PackageManager;
-import android.widget.Toast;
 
 import com.progmob.android.friendkeeper.R;
-import com.progmob.android.friendkeeper.utils.PreferencesManager;
+import com.progmob.android.friendkeeper.dao.ContactDao;
+import com.progmob.android.friendkeeper.database.AppDatabase;
+import com.progmob.android.friendkeeper.entities.Contact;
 import com.progmob.android.friendkeeper.ui.fragments.ContactListFragment;
+import com.progmob.android.friendkeeper.utils.PreferencesManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-
-
-import static android.Manifest.permission.POST_NOTIFICATIONS;
 /**
  * LoggedActivity
  * <p>
